@@ -1,0 +1,17 @@
+version: '3'
+services:
+  destructive_farm:
+    build: ./
+    ports:
+      - "5000:5000"
+    environment:
+      FLAG_FORMAT: ${FLAG_FORMAT}
+      SYSTEM_PROTOCOL: ${SYSTEM_PROTOCOL}
+      SYSTEM_HOST: ${SYSTEM_HOST}
+      SYSTEM_PORT: ${SYSTEM_PORT}
+      SYSTEM_URL: ${SYSTEM_URL}
+      SYSTEM_TOKEN: ${SYSTEM_TOKEN}
+      SUBMIT_FLAG_LIMIT: ${SUBMIT_FLAG_LIMIT}
+      SUBMIT_PERIOD: ${SUBMIT_PERIOD}
+      FLAG_LIFETIME: ${FLAG_LIFETIME}
+      SERVER_PASSWORD: ${SERVER_PASSWORD}
