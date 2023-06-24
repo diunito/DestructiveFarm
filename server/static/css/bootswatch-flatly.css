@@ -1756,7 +1756,7 @@ pre code {
 .table-secondary,
 .table-secondary > th,
 .table-secondary > td {
-  background-color: #e1e6e6;
+  background-color: #18BC9C !important;
 }
 
 .table-hover .table-secondary:hover {

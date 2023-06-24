@@ -5,8 +5,8 @@ CONFIG = {
 
     # The clients will run sploits on TEAMS and
     # fetch FLAG_FORMAT from sploits' stdout.
-    'TEAMS': {'Team #{}'.format(i): '10.0.0.{}'.format(i)
-              for i in range(1, 29 + 1)},
+    'TEAMS': {'Team #{}'.format(i): '10.60.{}.1'.format(i)
+              for i in range(1, 45 + 1)},
     'FLAG_FORMAT': os.environ.get(r'FLAG_FORMAT', r'[A-Z0-9]{31}='),
 
     # This configures how and where to submit flags.
