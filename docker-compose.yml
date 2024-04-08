@@ -4,5 +4,5 @@ services:
     build: ./
     ports:
       - "5000:5000"
-    env-env_file:
+    env_file:
       - .env
