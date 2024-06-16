@@ -1,3 +1,18 @@
+function toggleDarkMode() {
+    var body = document.body;
+    var card_body = document.getElementsByClassName("card-body");
+    body.classList.toggle("dark-mode");
+    for (var i = 0; i < card_body.length; i++) {
+        card_body[i].classList.toggle("dark-mode");
+    }
+    if (body.classList.contains("dark-mode")) {
+        $().button('toggle');
+    }
+    else {
+        $().button('toggle');
+    }
+  }
+
 function padLeft(s, length) {
     s = s.toString();
     while (s.length < length)
@@ -142,3 +157,4 @@ $(function () {
         postFlagsManual();
     });
 });
+
