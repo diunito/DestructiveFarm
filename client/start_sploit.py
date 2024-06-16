@@ -414,12 +414,16 @@ instance_storage = InstanceStorage()
 instance_lock = threading.RLock()
 
 
-def launch_sploit(args, team_name, team_addr, attack_no, flag_format):
+def launch_sploit(args, team_name, team_addr, attack_no, flag_format, idf):
     # For sploits written in Python, this env variable forces the interpreter to flush
     # stdout and stderr after each newline. Note that this is not default behavior
     # if the sploit's output is redirected to a pipe.
     env = os.environ.copy()
     env['PYTHONUNBUFFERED'] = '1'
+    if idf[0] is not None:
+        env['IDFIP'] = idf[0]
+    if idf[1] is not None:
+        env['IDFPORT'] = idf[1]
 
     command = [os.path.abspath(args.sploit)]
     if args.interpreter is not None:
@@ -445,13 +449,13 @@ def launch_sploit(args, team_name, team_addr, attack_no, flag_format):
     return proc, instance_storage.register_start(proc)
 
 
-def run_sploit(args, team_name, team_addr, attack_no, max_runtime, flag_format):
+def run_sploit(args, team_name, team_addr, attack_no, max_runtime, flag_format, idf):
     try:
         with instance_lock:
             if exit_event.is_set():
                 return
 
-            proc, instance_id = launch_sploit(args, team_name, team_addr, attack_no, flag_format)
+            proc, instance_id = launch_sploit(args, team_name, team_addr, attack_no, flag_format, idf)
     except Exception as e:
         if isinstance(e, FileNotFoundError):
             logging.error('Sploit file or the interpreter for it not found: {}'.format(repr(e)))
@@ -541,6 +545,10 @@ def main(args):
         try:
             config = get_config(args)
             flag_format = re.compile(config['FLAG_FORMAT'])
+            idfip_name = 'SYSTEM_ID_FLAGS_IP'
+            idfport_name = 'SYSTEM_ID_FLAGS_PORT'
+            idf = (config[idfip_name] if idfip_name in config.keys() else None,
+                   config[idfport_name] if idfport_name in config.keys() else None)
         except Exception as e:
             logging.error("Can't get config from the server: {}".format(repr(e)))
             if attack_no == 1:
@@ -559,7 +567,7 @@ def main(args):
         show_time_limit_info(args, config, max_runtime, attack_no)
 
         for team_name, team_addr in teams.items():
-            pool.submit(run_sploit, args, team_name, team_addr, attack_no, max_runtime, flag_format)
+            pool.submit(run_sploit, args, team_name, team_addr, attack_no, max_runtime, flag_format, idf)
 
 
 def shutdown():

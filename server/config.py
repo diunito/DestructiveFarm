@@ -21,6 +21,9 @@ CONFIG = {
     # URL, TOKEN for http
     'SYSTEM_URL': os.environ.get('SYSTEM_URL', 'http://monitor.ructfe.org/flags'),
     'SYSTEM_TOKEN': os.environ.get('SYSTEM_TOKEN', 'your_secret_token'),
+    # usable for both http and tcp (handling http/tcp is in the single scripts)
+    'SYSTEM_ID_FLAGS_IP': os.environ.get('SYSTEM_ID_FLAGS_IP', 'monitor.ructfe.org'),
+    'SYSTEM_ID_FLAGS_PORT': os.environ.get('SYSTEM_ID_FLAGS_PORT', '81'),
     
     # 'SYSTEM_PROTOCOL': 'ructf_tcp',
     # 'SYSTEM_HOST': '127.0.0.1',
