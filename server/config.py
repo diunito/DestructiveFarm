@@ -13,7 +13,7 @@ CONFIG = {
     # The protocol must be a module in protocols/ directory.
     # (Default values are there just for reference)
 
-    'SYSTEM_PROTOCOL': os.environ.get('SYSTEM_PROTOCOL', 'volgactf'),
+    'SYSTEM_PROTOCOL': os.environ.get('SYSTEM_PROTOCOL', 'ructf_http'),
     # HOST, PORT, TOKEN for tcp
     'SYSTEM_HOST': os.environ.get('SYSTEM_HOST', '10.10.10.10'),
     'SYSTEM_PORT': int(os.environ.get('SYSTEM_PORT', 31337)),
@@ -44,7 +44,7 @@ CONFIG = {
     # The server will submit not more than SUBMIT_FLAG_LIMIT flags
     # every SUBMIT_PERIOD seconds. Flags received more than
     # FLAG_LIFETIME seconds ago will be skipped.
-    'SUBMIT_FLAG_LIMIT': float(os.environ.get('SUBMIT_FLAG_LIMIT', 100)),
+    'SUBMIT_FLAG_LIMIT': int(os.environ.get('SUBMIT_FLAG_LIMIT', 100)),
     'SUBMIT_PERIOD': float(os.environ.get('SUBMIT_PERIOD', 5)),
     'FLAG_LIFETIME': float(os.environ.get('FLAG_LIFETIME', 60)),
 
