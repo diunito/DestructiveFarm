@@ -23,6 +23,10 @@ from math import ceil
 from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
+# print sploit config syntax highlighted
+from pygments import highlight as pyg_highlight
+from pygments.lexers import JsonLexer
+from pygments.formatters import TerminalFormatter
 
 os_windows = (os.name == 'nt')
 
@@ -566,8 +570,25 @@ def main(args):
         max_runtime = args.attack_period / ceil(len(teams) / args.pool_size)
         show_time_limit_info(args, config, max_runtime, attack_no)
 
+        # get exploit config stored in /path/to/sploit.ext.json
+        # can be expanded to have more config options
+        # see spl_example.py.json for an example
+        sploit_config_file = '{}.json'.format(args.sploit)
+        try:
+            with open(sploit_config_file, 'r') as f:
+                sploit_config = json.load(f)
+        except FileNotFoundError:
+            with open(sploit_config_file, 'w') as f:
+                sploit_config = {'team-blacklist': []}
+                json.dump(sploit_config, f, indent=8)
+
+        logging.info("sploit config loaded from {}:\n{}".format(sploit_config_file,
+                    pyg_highlight(json.dumps(sploit_config, indent=4), JsonLexer(), TerminalFormatter())))
+
+        team_blacklist = sploit_config['team-blacklist']
         for team_name, team_addr in teams.items():
-            pool.submit(run_sploit, args, team_name, team_addr, attack_no, max_runtime, flag_format, idf)
+            if team_addr not in team_blacklist and team_name not in team_blacklist:
+                pool.submit(run_sploit, args, team_name, team_addr, attack_no, max_runtime, flag_format, idf)
 
 
 def shutdown():

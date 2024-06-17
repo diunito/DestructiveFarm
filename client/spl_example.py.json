@@ -1,0 +1,8 @@
+{
+        "team-blacklist": [
+		"team name",
+		"Team #6",
+		"10.60.2.1",
+		"1.2.3.4"
+	]
+}
