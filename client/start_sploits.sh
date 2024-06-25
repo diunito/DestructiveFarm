@@ -23,7 +23,7 @@ if ! [ -f "$tokfile" ];then
 	exit 1
 fi
 if [ -n "$curf" ];then
-	cd "$curf" || echo echo "$curf doesn't exists, use --help for usage" && exit 2
+	cd "$curf" || { echo echo "$curf doesn't exists, use --help for usage"; exit 2; }
 fi
 
 pids=()
