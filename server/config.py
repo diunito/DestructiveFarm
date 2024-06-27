@@ -5,7 +5,7 @@ CONFIG = {
 
     # The clients will run sploits on TEAMS and
     # fetch FLAG_FORMAT from sploits' stdout.
-    'TEAMS': {'Team #{}'.format(i): '10.60.{}.1'.format(i)
+    'TEAMS': {'Team #{}'.format(i): os.environ.get('TEAM_FORMAT', '10.60.{}.1').format(i)
               for i in range(1, int(os.environ.get('TEAM_NUM', 45)) + 1)},
     'FLAG_FORMAT': os.environ.get('FLAG_FORMAT', r'[A-Z0-9]{31}='),
 
