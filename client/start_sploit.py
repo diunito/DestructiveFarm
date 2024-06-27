@@ -574,12 +574,21 @@ def main(args):
         # can be expanded to have more config options
         # see spl_example.py.json for an example
         sploit_config_file = '{}.json'.format(args.sploit)
+        sploit_default_config_file = 'default_sploit_config.json'
         try:
             with open(sploit_config_file, 'r') as f:
                 sploit_config = json.load(f)
         except FileNotFoundError:
+            # load default config if no config yet
+            try:
+                with open(sploit_default_config_file, 'r') as f:
+                    default_config = json.load(f)
+            except FileNotFoundError:
+                default_config = {'team-blacklist': []}
+
+            # write default config if no config yet
             with open(sploit_config_file, 'w') as f:
-                sploit_config = {'team-blacklist': []}
+                sploit_config = default_config
                 json.dump(sploit_config, f, indent=8)
 
         logging.info("sploit config loaded from {}:\n{}".format(sploit_config_file,
