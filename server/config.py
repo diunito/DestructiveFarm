@@ -54,5 +54,11 @@ CONFIG = {
 
     # Use authorization for API requests
     'ENABLE_API_AUTH': bool(os.environ.get('ENABLE_API_AUTH', "false").lower() == "true"), # bool() just to be sure
-    'API_TOKEN': os.environ.get('API_TOKEN', 'Tok3N')
+    'API_TOKEN': os.environ.get('API_TOKEN', 'Tok3N'),
+
+    # Custom library folder (for example containing custom python modules)
+    # This path will be added by start_sploit.py
+    # to $PYTHONPATH (for python scripts)
+    # and to $LIBPATH (for bash scripts)
+    'LIBPATH': os.environ.get('LIBPATH', '')
 }
