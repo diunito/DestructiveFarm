@@ -19,7 +19,7 @@ RESPONSES = {
 # to the checksystem database. We should resent the flag later in this case.
 
 
-TIMEOUT = 60
+TIMEOUT = 30
 
 
 def submit_flags(flags, config):
