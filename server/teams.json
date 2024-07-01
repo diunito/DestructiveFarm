@@ -1,0 +1,266 @@
+[
+    {
+      "id": 0,
+      "name": "NOP Team",
+      "shortname": "cybersecnatlab",
+      "nop": true
+    },
+    {
+      "id": 1,
+      "name": "Accademia Aeronautica di Pozzuoli",
+      "shortname": "aeronautica1",
+      "nop": false
+    },
+    {
+      "id": 2,
+      "name": "Alma Mater Studiorum - Università di Bologna",
+      "shortname": "unibo1",
+      "nop": false
+    },
+    {
+      "id": 3,
+      "name": "Centro di Competenza in Cybersecurity Toscano",
+      "shortname": "c3t1",
+      "nop": false
+    },
+    {
+      "id": 4,
+      "name": "Comando per la Formazione e Scuola di Applicazione dell'Esercito - Torino",
+      "shortname": "esercito1",
+      "nop": false
+    },
+    {
+      "id": 5,
+      "name": "Libera Università di Bolzano",
+      "shortname": "unibz1",
+      "nop": false
+    },
+    {
+      "id": 6,
+      "name": "Politecnico di Bari",
+      "shortname": "poliba1",
+      "nop": false
+    },
+    {
+      "id": 7,
+      "name": "Politecnico di Milano",
+      "shortname": "polimi1",
+      "nop": false
+    },
+    {
+      "id": 8,
+      "name": "Politecnico di Torino",
+      "shortname": "polito1",
+      "nop": false
+    },
+    {
+      "id": 9,
+      "name": "Sapienza Università di Roma",
+      "shortname": "unirm11",
+      "nop": false
+    },
+    {
+      "id": 10,
+      "name": "Università Ca' Foscari Venezia",
+      "shortname": "unive1",
+      "nop": false
+    },
+    {
+      "id": 11,
+      "name": "Università Campus Bio-Medico di Roma",
+      "shortname": "unicampus1",
+      "nop": false
+    },
+    {
+      "id": 12,
+      "name": "Università degli Studi della Campania Luigi Vanvitelli",
+      "shortname": "unicampania1",
+      "nop": false
+    },
+    {
+      "id": 13,
+      "name": "Università degli Studi dell'Aquila",
+      "shortname": "univaq1",
+      "nop": false
+    },
+    {
+      "id": 14,
+      "name": "Università degli Studi dell'Insubria",
+      "shortname": "uninsubria1",
+      "nop": false
+    },
+    {
+      "id": 15,
+      "name": "Università degli Studi di Bari Aldo Moro",
+      "shortname": "uniba1",
+      "nop": false
+    },
+    {
+      "id": 16,
+      "name": "Università degli Studi di Brescia",
+      "shortname": "unibs1",
+      "nop": false
+    },
+    {
+      "id": 17,
+      "name": "Università degli Studi di Cagliari",
+      "shortname": "unica1",
+      "nop": false
+    },
+    {
+      "id": 18,
+      "name": "Università degli Studi di Camerino",
+      "shortname": "unicam1",
+      "nop": false
+    },
+    {
+      "id": 19,
+      "name": "Università degli Studi di Catania",
+      "shortname": "unict1",
+      "nop": false
+    },
+    {
+      "id": 20,
+      "name": "Università degli Studi di Ferrara",
+      "shortname": "unife1",
+      "nop": false
+    },
+    {
+      "id": 21,
+      "name": "Università degli Studi di Genova",
+      "shortname": "unige1",
+      "nop": false
+    },
+    {
+      "id": 22,
+      "name": "Università degli Studi di Messina",
+      "shortname": "unime1",
+      "nop": false
+    },
+    {
+      "id": 23,
+      "name": "Università degli Studi di Milano",
+      "shortname": "unimi1",
+      "nop": false
+    },
+    {
+      "id": 24,
+      "name": "Università degli Studi di Milano-Bicocca",
+      "shortname": "unimib1",
+      "nop": false
+    },
+    {
+      "id": 25,
+      "name": "Università degli Studi di Padova",
+      "shortname": "unipd1",
+      "nop": false
+    },
+    {
+      "id": 26,
+      "name": "Università degli Studi di Palermo",
+      "shortname": "unipa1",
+      "nop": false
+    },
+    {
+      "id": 27,
+      "name": "Università degli Studi di Parma",
+      "shortname": "unipr1",
+      "nop": false
+    },
+    {
+      "id": 28,
+      "name": "Università degli Studi di Perugia",
+      "shortname": "unipg1",
+      "nop": false
+    },
+    {
+      "id": 29,
+      "name": "Università degli Studi di Roma Tor Vergata",
+      "shortname": "unirm21",
+      "nop": false
+    },
+    {
+      "id": 30,
+      "name": "Università degli Studi di Salerno",
+      "shortname": "unisa1",
+      "nop": false
+    },
+    {
+      "id": 31,
+      "name": "Università degli Studi di Trento",
+      "shortname": "unitn1",
+      "nop": false
+    },
+    {
+      "id": 32,
+      "name": "Università degli Studi di Udine",
+      "shortname": "uniud1",
+      "nop": false
+    },
+    {
+      "id": 33,
+      "name": "Università degli Studi di Verona",
+      "shortname": "univr1",
+      "nop": false
+    },
+    {
+      "id": 34,
+      "name": "Università degli Studi \"Gabriele d'Annunzio\" di Chieti-Pescara",
+      "shortname": "unich1",
+      "nop": false
+    },
+    {
+      "id": 35,
+      "name": "Università degli Studi Roma Tre",
+      "shortname": "unirm31",
+      "nop": false
+    },
+    {
+      "id": 36,
+      "name": "Università della Calabria",
+      "shortname": "unical1",
+      "nop": false
+    },
+    {
+      "id": 37,
+      "name": "Università del Salento",
+      "shortname": "unisalento1",
+      "nop": false
+    },
+    {
+      "id": 38,
+      "name": "Università di Modena e Reggio Emilia",
+      "shortname": "unimore1",
+      "nop": false
+    },
+    {
+      "id": 39,
+      "name": "Università di Napoli",
+      "shortname": "napoli1",
+      "nop": false
+    },
+    {
+      "id": 40,
+      "name": "Università di Pisa",
+      "shortname": "unipi1",
+      "nop": false
+    },
+    {
+      "id": 41,
+      "name": "Università di Torino",
+      "shortname": "unito1",
+      "nop": false
+    },
+    {
+      "id": 42,
+      "name": "Università Mediterranea di Reggio Calabria",
+      "shortname": "unirc1",
+      "nop": false
+    },
+    {
+      "id": 43,
+      "name": "Università Politecnica delle Marche",
+      "shortname": "univpm1",
+      "nop": false
+    }
+  ]

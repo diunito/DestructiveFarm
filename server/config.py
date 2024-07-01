@@ -5,6 +5,15 @@ CONFIG = {
 
     # The clients will run sploits on TEAMS and
     # fetch FLAG_FORMAT from sploits' stdout.
+
+    """
+    IGNORED_TEAMS = [0,6]
+    'TEAMS': {  f"{team['shortname']}" : '10.60.{}.1'.format(team["teamId"])  
+                    for team in requests.get(url="http://10.10.0.1/api/scoreboard/table/1", timeout=1).json()["scoreboard"] 
+                    if not team["teamId"] in IGNORED_TEAMS },
+    """
+
+
     'TEAMS': {'Team #{}'.format(i): os.environ.get('TEAM_FORMAT', '10.60.{}.1').format(i)
               for i in range(1, int(os.environ.get('TEAM_NUM', 45)) + 1)},
     'FLAG_FORMAT': os.environ.get('FLAG_FORMAT', r'[A-Z0-9]{31}='),
@@ -62,3 +71,9 @@ CONFIG = {
     # and to $LIBPATH (for bash scripts)
     'LIBPATH': os.environ.get('LIBPATH', '')
 }
+
+
+import json
+with open('teams.json', 'r') as f:
+    teams = json.load(f)
+    CONFIG['TEAMS'] = {team['shortname'] + '(' + str(team['id']) + ')': '10.60.'+ str(team['id']) +'.1' for team in teams}
