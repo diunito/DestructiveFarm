@@ -1,5 +1,6 @@
 import os
 import json
+import datetime
 
 def make_team_dict(file):
     try:
@@ -19,12 +20,10 @@ CONFIG = {
     # The clients will run sploits on TEAMS and
     # fetch FLAG_FORMAT from sploits' stdout.
 
-    """
-    IGNORED_TEAMS = [0]
-    'TEAMS': {  f"{team['shortname']}" : '10.60.{}.1'.format(team["teamId"])  
-                    for team in requests.get(url="http://10.10.0.1/api/scoreboard/table/1", timeout=1).json()["scoreboard"] 
-                    if not team["teamId"] in IGNORED_TEAMS },
-    """
+    #IGNORED_TEAMS = [0]
+    #'TEAMS': {  f"{team['shortname']}" : '10.60.{}.1'.format(team["teamId"])
+    #                for team in requests.get(url="http://10.10.0.1/api/scoreboard/table/1", timeout=1).json()["scoreboard"]
+    #                if not team["teamId"] in IGNORED_TEAMS },
 
     'TEAMS': make_team_dict(os.path.dirname(__file__) + '/teams.json'),
     'FLAG_FORMAT': os.environ.get('FLAG_FORMAT', r'[A-Z0-9]{31}='),
@@ -41,10 +40,11 @@ CONFIG = {
     # URL, TOKEN for http
     'SYSTEM_URL': os.environ.get('SYSTEM_URL', 'http://monitor.ructfe.org/flags'),
     'SYSTEM_TOKEN': os.environ.get('SYSTEM_TOKEN', 'your_secret_token'),
+    'HTTP_TIMEOUT': os.environ.get('HTTP_TIMEOUT', 30),
     # usable for both http and tcp (handling http/tcp is in the single scripts)
     'SYSTEM_ID_FLAGS_IP': os.environ.get('SYSTEM_ID_FLAGS_IP', 'monitor.ructfe.org'),
     'SYSTEM_ID_FLAGS_PORT': os.environ.get('SYSTEM_ID_FLAGS_PORT', '81'),
-    
+
     # 'SYSTEM_PROTOCOL': 'ructf_tcp',
     # 'SYSTEM_HOST': '127.0.0.1',
     # 'SYSTEM_PORT': 31337,
@@ -61,12 +61,23 @@ CONFIG = {
     # 'SYSTEM_PORT': 31337,
     # 'TEAM_TOKEN': 'your_secret_token',
 
+    # 'SYSTEM_PROTOCOL': 'ccit_http',
+    # 'SYSTEM_HOST': '127.0.0.1',
+    # 'SYSTEM_PORT': 4444,
+    # 'SYSTEM_TOKEN': 'CHANGE_ME',
+    # 'SYSTEM_URL': 'http://10.10.0.1:8080/flags',
+
     # The server will submit not more than SUBMIT_FLAG_LIMIT flags
     # every SUBMIT_PERIOD seconds. Flags received more than
     # FLAG_LIFETIME seconds ago will be skipped.
     'SUBMIT_FLAG_LIMIT': int(os.environ.get('SUBMIT_FLAG_LIMIT', 100)),
     'SUBMIT_PERIOD': float(os.environ.get('SUBMIT_PERIOD', 5)),
     'FLAG_LIFETIME': float(os.environ.get('FLAG_LIFETIME', 60)),
+
+    # A/D time informations
+    'TICK_DURATION': float(os.environ.get('TICK_DURATION', 120)),
+    'START_TIME' : round(strptime(os.environ.get('START_TIME', '2022-06-16T12:00:00+02:00'), '%Y-%m-%dT%H:%M:%S%z').timestamp()),
+    'END_TIME' : round(strptime(os.environ.get('START_TIME', '2022-06-16T22:00:00+02:00'), '%Y-%m-%dT%H:%M:%S%z').timestamp()),
 
     # Password for the web interface. You can use it with any login.
     # This value will be excluded from the config before sending it to farm clients.
@@ -82,4 +93,3 @@ CONFIG = {
     # and to $LIBPATH (for bash scripts)
     'LIBPATH': os.environ.get('LIBPATH', '')
 }
-
