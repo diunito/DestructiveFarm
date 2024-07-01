@@ -16,7 +16,8 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0">
-    <img class="logo" src="/static/img/dvteam_white.png">
+    <a href="/"><img class="logo" src="/static/img/dvteam_white.png"></a>
+    <a href="/table" class="navbar-brand" >Table</a>
     <div class="navbar-brand">Destructive Farm</div>
     <div class="btn-group-toggle ml-auto" data-toggle="buttons">
         <label class="btn btn-secondary active">
@@ -88,6 +89,13 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
+                                <label for="tick-input">
+                                    Tick
+                                </label>
+                                <input type="number" class="form-control form-control-sm" id="tick-input"
+                                       name="tick">
+                            </div>
+                            <div class="col-md-2">
                                 <label for="checksystem-response-input">
                                     Checksystem response
                                 </label>
@@ -123,6 +131,8 @@
         </div>
     </div>
 
+    <canvas id="myChart" width="100%" height="30px"></canvas>
+
     <div class="mb-3 text-center query-status"></div>
 
     <div class="search-results" style="display: none;">
@@ -137,6 +147,7 @@
                 <th scope="col">Team</th>
                 <th scope="col">Flag</th>
                 <th scope="col">Time</th>
+                <th scope="col">Tick</th>
                 <th scope="col">Status</th>
                 <th scope="col">Checksystem Response</th>
             </tr>
@@ -147,8 +158,8 @@
         <ul class="pagination pagination-sm"></ul>
     </div>
 </div>
-
 <script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/chart.js"></script>
 <script src="/static/js/ui.js"></script>
 
 </body>

@@ -39,6 +39,7 @@ function generateFlagTableRows(rows) {
             item.team !== null ? item.team : '',
             item.flag,
             dateToString(new Date(item.time * 1000)),
+            item.tick,
             item.status,
             item.checksystem_response !== null ? item.checksystem_response : ''
         ];
@@ -142,9 +143,74 @@ function postFlagsManual() {
         });
 }
 
+var colors_map = new Object();
+function getRandomColor(name){
+    var colors = ['red','blue','green','purple','white','yellow','orange','brown','pink', 'grey', 'lime', 'aqua','cyan']
+    if (!colors_map[name]) {
+        colors_map[name] =  colors[Math.floor(Math.random()*colors.length)];
+    } 
+    return colors_map[name];
+}
+
+var myChart;
+function updateChart(){
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    $.get('/ui/show_graph').done(function (response) {
+        
+        datasets = []
+
+        response.sploits.forEach(s => {
+            counts = Array.from({length: (response.curr_tick - response.min_tick) },(v,k)=> 0);
+            response.ticks.filter(t => t['sploit'] == s).forEach( t=>{
+                counts[t.tick - response.min_tick] = t.count;
+            });
+            datasets.push({
+                label: s,
+                data : counts,
+                borderColor: getRandomColor(s)
+            })
+        });
+        if (myChart != null){
+            myChart.destroy();
+        }
+        myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: Array.from({length: (response.curr_tick - response.min_tick) },(v,k)=> k + response.min_tick),
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            plugins: {
+            legend: {
+                color: 'white',
+                position: 'top',
+            },
+            title: {
+                color: 'white',
+                display: true,
+                text: 'Flags/tick starting from Tick #' + response['min_tick']
+            }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+            },
+        });
+
+    });
+}
+
 $(function () {
     showFlags();
-
+    updateChart();
+    var intervalId = window.setInterval(function(){
+        showFlags();
+        updateChart();
+      }, 30*1000);
     $('#show-flags-form').submit(function (event) {
         event.preventDefault();
 

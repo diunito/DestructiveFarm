@@ -9,38 +9,38 @@ RESPONSES = {
                         'no such flag'],
     FlagStatus.ACCEPTED: ['accepted', 'congrat'],
     FlagStatus.REJECTED: ['bad', 'wrong', 'expired', 'unknown', 'your own',
-                          'too old', 'not in database', 'already submitted', 'already claimed', 'invalid flag'],
+                          'too old', 'not in database', 'already', 'invalid', 'nop team'],
 }
-# The RuCTF checksystem adds a signature to all correct flags. It returns
-# "invalid flag" verdict if the signature is invalid and "no such flag" verdict if
-# the signature is correct but the flag was not found in the checksystem database.
-#
-# The latter situation happens if a checker puts the flag to the service before putting it
-# to the checksystem database. We should resent the flag later in this case.
-
-
-TIMEOUT = 30
 
 
 def submit_flags(flags, config):
+    TIMEOUT = config["HTTP_TIMEOUT"]
+    SUBMITTED_FLAGS = [item.flag for item in flags]
+
     r = requests.put(config['SYSTEM_URL'],
                      headers={'X-Team-Token': config['SYSTEM_TOKEN']},
-                     json=[item.flag for item in flags], timeout=TIMEOUT)
+                     json=SUBMITTED_FLAGS, timeout=TIMEOUT)
+    if r.status_code == 429:
+        for flag in SUBMITTED_FLAGS:
+            yield SubmitResult(flag, FlagStatus.QUEUED, "Too many requests. Error 429")
+    else:
+        unknown_responses = set()
+        for i, item in enumerate(r.json()):
+            if not isinstance(item, dict):       
+                yield SubmitResult(SUBMITTED_FLAGS[i], FlagStatus.QUEUED, "Unexpected response. Error 429")
 
-    unknown_responses = set()
-    for item in r.json():
-        response = item['msg'].strip()
-        response = response.replace('[{}] '.format(item['flag']), '')
+            response = item['msg'].strip()
+            response = response.replace('[{}] '.format(item['flag']), '')
 
-        response_lower = response.lower()
-        for status, substrings in RESPONSES.items():
-            if any(s in response_lower for s in substrings):
-                found_status = status
-                break
-        else:
-            found_status = FlagStatus.QUEUED
-            if response not in unknown_responses:
-                unknown_responses.add(response)
-                app.logger.warning('Unknown checksystem response (flag will be resent): %s', response)
+            response_lower = response.lower()
+            for status, substrings in RESPONSES.items():
+                if any(s in response_lower for s in substrings):
+                    found_status = status
+                    break
+            else:
+                found_status = FlagStatus.QUEUED
+                if response not in unknown_responses:
+                    unknown_responses.add(response)
+                    app.logger.warning('Unknown checksystem response (flag will be resent): %s', response)
 
-        yield SubmitResult(item['flag'], found_status, response)
+            yield SubmitResult(item['flag'], found_status, response)
