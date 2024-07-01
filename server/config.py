@@ -1,6 +1,6 @@
 import os
 import json
-import datetime
+from datetime import datetime
 
 def make_team_dict(file):
     try:
@@ -76,8 +76,8 @@ CONFIG = {
 
     # A/D time informations
     'TICK_DURATION': float(os.environ.get('TICK_DURATION', 120)),
-    'START_TIME' : round(strptime(os.environ.get('START_TIME', '2022-06-16T12:00:00+02:00'), '%Y-%m-%dT%H:%M:%S%z').timestamp()),
-    'END_TIME' : round(strptime(os.environ.get('START_TIME', '2022-06-16T22:00:00+02:00'), '%Y-%m-%dT%H:%M:%S%z').timestamp()),
+    'START_TIME' : round(datetime.strptime(os.environ.get('START_TIME', '2022-06-16T12:00:00+02:00'), '%Y-%m-%dT%H:%M:%S%z').timestamp()),
+    'END_TIME' : round(datetime.strptime(os.environ.get('START_TIME', '2022-06-16T22:00:00+02:00'), '%Y-%m-%dT%H:%M:%S%z').timestamp()),
 
     # Password for the web interface. You can use it with any login.
     # This value will be excluded from the config before sending it to farm clients.
