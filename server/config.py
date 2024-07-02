@@ -24,6 +24,7 @@ CONFIG = {
     #'TEAMS': {  f"{team['shortname']}" : '10.60.{}.1'.format(team["teamId"])
     #                for team in requests.get(url="http://10.10.0.1/api/scoreboard/table/1", timeout=1).json()["scoreboard"]
     #                if not team["teamId"] in IGNORED_TEAMS },
+    # curl http://10.10.0.1/api/scoreboard/table/1
 
     'TEAMS': make_team_dict(os.path.dirname(__file__) + '/teams.json'),
     'FLAG_FORMAT': os.environ.get('FLAG_FORMAT', r'[A-Z0-9]{31}='),
