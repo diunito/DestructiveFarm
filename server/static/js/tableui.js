@@ -53,12 +53,14 @@ function showFlags() {
             $('.search-results').show();
 
             var table = document.getElementById("flag-table");
-            console.log(table);
             var cells = table.getElementsByTagName("td");
 
             for (var i = 0; i < cells.length; i++) {
-                if (cells[i].textContent.trim() === "0") {
+                var cellValue = parseInt(cells[i].textContent.trim(), 10);
+                if (cellValue === 0) {
                     cells[i].classList.add("red-background");
+                } else if (cellValue > 0) {
+                    cells[i].classList.add("green-background");
                 }
             }
 
