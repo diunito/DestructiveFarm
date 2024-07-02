@@ -51,6 +51,17 @@ function showFlags() {
             sorttable.innerSortFunction.apply(document.getElementById('total'), []);
             $('.query-status').hide();
             $('.search-results').show();
+
+            var table = document.getElementById("flag-table");
+            console.log(table);
+            var cells = table.getElementsByTagName("td");
+
+            for (var i = 0; i < cells.length; i++) {
+                if (cells[i].textContent.trim() === "0") {
+                    cells[i].classList.add("red-background");
+                }
+            }
+
             $('#curr_tick').text(document.getElementById("tick-input").value)
         })
         .fail(function () {
