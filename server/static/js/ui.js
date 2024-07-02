@@ -184,11 +184,11 @@ function updateChart(){
             responsive: true,
             plugins: {
             legend: {
-                color: 'white',
+                color: 'red',
                 position: 'top',
             },
             title: {
-                color: 'white',
+                color: 'red',
                 display: true,
                 text: 'Flags/tick starting from Tick #' + response['min_tick']
             }
